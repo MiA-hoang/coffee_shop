@@ -1,1 +1,1 @@
-# coffee_shop
+Giao diện trang chủ đang được phát triển. Các thư mục quản trị, sản phẩm, giỏ hàng, đơn hàng và tài khoản đã được bố trí trong cấu trúc dự án; cần hoàn thiện và kiểm tra các luồng này trước khi xem là tính năng hoạt động.
