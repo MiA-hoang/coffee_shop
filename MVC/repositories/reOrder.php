@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/interface.php';
-// TODO: implement with PDO prepared statements (see reProduct.php for the pattern).
 class reOrder implements RepositoryInterface {
     private $conn;
     public function __construct($db) { $this->conn = $db; }

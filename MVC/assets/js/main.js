@@ -30,4 +30,15 @@
   // Lọc thực đơn ngay khi đổi danh mục
   var select = document.querySelector('.filter select');
   if (select) select.addEventListener('change', function () { select.form.submit(); });
+
+  // Đổi ảnh CAPTCHA nếu ký tự bị nhiễu khó đọc.
+  document.querySelectorAll('[data-captcha-widget]').forEach(function (widget) {
+    var image = widget.querySelector('img');
+    var button = widget.querySelector('[data-captcha-refresh]');
+    if (image && button) {
+      button.addEventListener('click', function () {
+        image.src = image.getAttribute('data-base-src') + '&t=' + Date.now();
+      });
+    }
+  });
 })();

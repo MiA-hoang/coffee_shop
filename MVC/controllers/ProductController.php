@@ -39,12 +39,14 @@ class ProductController {
         require __DIR__ . '/../views/products/detail.php';
     }
     public function create() {
+        requireRole('admin');
         $categories = $this->categoryRepository->getAll();
         $values = []; $errors = [];
         $pageTitle = 'Add product';
         require __DIR__ . '/../views/products/add.php';
     }
     public function store() {
+        requireRole('admin');
         $categories = $this->categoryRepository->getAll();
         $values = $_POST; $errors = [];
         $name = isset($values['tenSanPham']) && is_string($values['tenSanPham']) ? trim($values['tenSanPham']) : '';
@@ -71,6 +73,7 @@ class ProductController {
         require __DIR__ . '/../views/products/add.php';
     }
     public function report() {
+        requireRole('admin');
         $summary = $this->repository->summary();
         $pageTitle = 'Report';
         require __DIR__ . '/../views/products/report.php';

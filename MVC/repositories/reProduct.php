@@ -28,7 +28,7 @@ class reProduct implements RepositoryInterface {
     public function getFeatured($limit = 4) {
         $sql = 'SELECT p.maSanPham, p.tenSanPham, p.gia, p.moTa, p.hinhAnh, p.maDanhMuc, c.tenDanhMuc
                 FROM tblSanPham p INNER JOIN tblDanhMuc c ON c.maDanhMuc = p.maDanhMuc
-                ORDER BY p.maSanPham DESC LIMIT ' . (int)$limit;
+                ORDER BY (p.hinhAnh IS NULL), p.maSanPham DESC LIMIT ' . (int)$limit;
         return $this->conn->query($sql)->fetchAll();
     }
     // One product as an array, including its category name (used by the detail page).

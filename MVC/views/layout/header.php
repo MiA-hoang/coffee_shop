@@ -14,7 +14,7 @@ $fullWidth = $fullWidth ?? false;
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=17">
 </head>
 <body>
 <header class="site-header">
@@ -29,10 +29,15 @@ $fullWidth = $fullWidth ?? false;
     </button>
 
     <nav class="site-nav" id="site-nav" aria-label="Menu chính">
-      <?php foreach ($nav as $controller => $label): ?>
+      <?php foreach ($nav as $controller => $label): if ($controller === 'Auth' && currentUser()) continue; ?>
         <a href="<?= h(url($controller, $controller === 'Auth' ? 'login' : 'index')) ?>"<?= $currentController === $controller ? ' aria-current="page"' : '' ?>><?= h($label) ?></a>
       <?php endforeach; ?>
-      <a class="nav-cta" href="<?= h(url('Home')) ?>#lien-he">Ghé quán</a>
+      <?php if (currentUser()): ?>
+        <a class="account-nav-link" href="<?= h(url('Account', 'index')) ?>" aria-label="Thông tin tài khoản và lịch sử mua hàng"><?= h(currentUser()['hoTen']) ?></a>
+        <form method="post" action="<?= h(url('Auth', 'logout')) ?>" class="inline-form">
+          <?= csrfField() ?><button type="submit">Đăng xuất</button>
+        </form>
+      <?php endif; ?>
     </nav>
   </div>
 </header>

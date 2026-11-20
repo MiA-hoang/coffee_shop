@@ -42,6 +42,6 @@
     <p><a href="<?= h(url('Product', 'create')) ?>">Thêm món</a> · <a href="<?= h(url('Product', 'report')) ?>">Báo cáo</a></p>
   </div>
 </footer>
-<script src="assets/js/main.js" defer></script>
+<script src="assets/js/main.js?v=2" defer></script>
 </body>
 </html>
